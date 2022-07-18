@@ -13,7 +13,7 @@ def select_features(input_file, output_file, features):
     df.to_csv(output_file, index=False)
 
 
-def main(argv):
+def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--input-file",
                         type=str,
@@ -31,7 +31,7 @@ def main(argv):
                         required=True,
                         help="List of features to select")
 
-    args = parser.parse_args(argv)
+    args = parser.parse_args()
 
     mlflow.start_run()
 
