@@ -37,10 +37,7 @@ def main():
 
     mlflow.log_param('features', args.features)
 
-    select_features(**args)
-
-    mlflow.log_metric('num_samples', len(df))
-    mlflow.log_metric('num_features', len(df.columns))
+    select_features(args.input_file, args.output_file, args.features)
 
     mlflow.end_run()
 
