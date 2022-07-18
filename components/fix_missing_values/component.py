@@ -35,8 +35,6 @@ def main():
 
     mlflow.start_run()
 
-    mlflow.log_param('features', args.features)
-
     df = pd.read_csv(args.input_file)
 
     df = drop_missing_wachttijden(df)
