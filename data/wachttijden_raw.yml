@@ -1,0 +1,6 @@
+$schema: https://azuremlschemas.azureedge.net/latest/data.schema.json
+version: 1
+name: wachttijden_raw
+description: Raw input data for the wachttijden model
+type: uri_file
+path: azureml://datastores/workspaceblobstore/paths/wachttijden/raw/2022/07/14/wachttijden.csv
