@@ -1,6 +1,6 @@
 $schema: https://azuremlschemas.azureedge.net/latest/commandComponent.schema.json
 name: select_features
-version: 3
+version: 5
 description: Selects features from the input dataset and saves them to the output
 display_name: Select features
 type: command

@@ -1,6 +1,6 @@
 $schema: https://azuremlschemas.azureedge.net/latest/commandComponent.schema.json
 name: fix_missing_values
-version: 2
+version: 3
 description: Fixes missing values in the data set.
 display_name: Fix missing values
 type: command
