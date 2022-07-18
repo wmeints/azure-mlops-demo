@@ -1,0 +1,18 @@
+$schema: https://azuremlschemas.azureedge.net/latest/commandComponent.schema.json
+name: select_features
+version: 3
+description: Selects features from the input dataset and saves them to the output
+display_name: Select features
+type: command
+inputs:
+  input_file:
+    type: uri_file
+  features:
+    type: string
+outputs:
+  output_file:
+    type: uri_file
+code: .
+environment: azureml:AzureML-sklearn-1.0-ubuntu20.04-py38-cpu:25
+command: >-
+  python component.py --input-file ${{inputs.input_file}} --output-file ${{outputs.output_file}} --features ${{inputs.features}}

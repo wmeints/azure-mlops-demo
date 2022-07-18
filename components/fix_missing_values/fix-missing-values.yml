@@ -1,0 +1,16 @@
+$schema: https://azuremlschemas.azureedge.net/latest/commandComponent.schema.json
+name: fix_missing_values
+version: 2
+description: Fixes missing values in the data set.
+display_name: Fix missing values
+type: command
+inputs:
+  input_file:
+    type: uri_file
+outputs:
+  output_file:
+    type: uri_file
+code: .
+environment: azureml:AzureML-sklearn-1.0-ubuntu20.04-py38-cpu:25
+command: >-
+  python component.py --input-file ${{inputs.input_file}} --output-file ${{outputs.output_file}}
