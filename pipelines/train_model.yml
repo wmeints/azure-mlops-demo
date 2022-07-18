@@ -1,0 +1,26 @@
+$schema: https://azuremlschemas.azureedge.net/latest/pipelineJob.schema.json
+type: pipeline
+display_name: Train wachttijden model
+description: Trains the wachttijden model
+compute: azureml:cc-3v3j6znbgo5pe
+
+inputs:
+  training_set:
+    type: uri_file
+    mode: download
+    path: azureml:wachttijden_preprocessed@latest
+
+outputs:
+  model:
+    type: mlflow_model
+    mode: rw_mount
+
+jobs:
+  train_model:
+    type: command
+    environment: azureml:infosupport-mlops-ebm:5
+    component: file:../components/train/train.yml
+    inputs:
+      training_data: ${{parent.inputs.training_set}}
+    outputs:
+      model: ${{parent.outputs.model}}
