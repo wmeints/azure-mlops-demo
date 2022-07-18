@@ -1,0 +1,30 @@
+$schema: https://azuremlschemas.azureedge.net/latest/pipelineJob.schema.json
+type: pipeline
+display_name: Prepare wachttijden dataset
+description: Prepares the feature set for the wachttijden model
+compute: azureml:cc-3v3j6znbgo5pe
+
+outputs:
+  prepared_dataset:
+    type: uri_file
+    mode: rw_mount
+
+jobs:
+  select_features:
+    type: command
+    component: azureml:select_features@latest
+    inputs:
+      input_file: 
+        path: azureml:wachttijden_raw@latest
+      features: TYPE_WACHTTIJD WACHTTIJD OMS_WACHTTIJD SPECIALISME ROAZ_REGIO NAAM_INSTELLING TYPE_ZORGINSTELLING
+    outputs:
+      output_file:
+        type: uri_file
+        mode: rw_mount
+  fix_missing_values:
+    type: command
+    component: azureml:fix_missing_values@latest
+    inputs:
+      input_file: ${{parent.jobs.select_features.outputs.output_file}}
+    outputs:
+      output_file: ${{parent.outputs.prepared_dataset}}
