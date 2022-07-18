@@ -1,0 +1,7 @@
+channels:
+  - conda-forge
+dependencies:
+  - python=3.10
+  - pip=21.2.4
+  - pip:
+    - interpret==0.2.7
