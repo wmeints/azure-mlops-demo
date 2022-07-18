@@ -1,0 +1,16 @@
+$schema: https://azuremlschemas.azureedge.net/latest/commandComponent.schema.json
+name: train
+version: 1
+description: Trains the model
+display_name: Train model
+type: command
+inputs:
+  training_data:
+    type: uri_file
+outputs:
+  model:
+    type: mlflow_model
+code: .
+environment: azureml:AzureML-sklearn-1.0-ubuntu20.04-py38-cpu:25
+command: >-
+  python component.py --training-data ${{inputs.training_data}} --model-file ${{outputs.model}}
