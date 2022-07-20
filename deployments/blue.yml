@@ -1,0 +1,11 @@
+$schema: https://azuremlschemas.azureedge.net/latest/managedOnlineDeployment.schema.json
+name: blue
+endpoint_name: wachttijden
+model: azureml:wachttijden:5
+code_configuration:
+  code: ../components/score
+  scoring_script: score.py
+environment: azureml:infosupport-mlops-ebm:8
+instance_type: Standard_DS2_v2
+instance_count: 1
+app_insights_enabled: true
