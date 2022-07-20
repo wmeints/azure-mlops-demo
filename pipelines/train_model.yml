@@ -9,17 +9,9 @@ inputs:
     type: uri_file
     mode: download
     path: azureml:wachttijden_preprocessed@latest
-
-outputs:
-  model:
-    type: mlflow_model
-    mode: rw_mount
-
 jobs:
   train_model:
     type: command
     component: file:../components/train/train.yml
     inputs:
       training_data: ${{parent.inputs.training_set}}
-    outputs:
-      model: ${{parent.outputs.model}}

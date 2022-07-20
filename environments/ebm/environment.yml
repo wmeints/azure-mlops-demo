@@ -1,6 +1,6 @@
 $schema: https://azuremlschemas.azureedge.net/latest/environment.schema.json
 name: infosupport-mlops-ebm
-version: 7
+version: 8
 description: A scikit-learn environment that supports training EBMs
 image: mcr.microsoft.com/azureml/curated/sklearn-1.0-ubuntu20.04-py38-cpu:25
 conda_file: conda_env.yml

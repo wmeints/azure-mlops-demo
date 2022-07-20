@@ -1,3 +1,4 @@
+import os
 import mlflow
 import pandas as pd
 import argparse
@@ -12,30 +13,29 @@ def main():
                         required=True,
                         help='The input file containing the training data')
 
-    parser.add_argument('--model-file',
-                        type=str,
-                        required=True,
-                        help='The output file to write the model to')
-
     args = parser.parse_args()
 
     mlflow.start_run()
 
     df_input = pd.read_csv(args.training_data)
-    df_features = df_input.drop(['WACHTTIJD'])
-    df_output = df_input['WACHTTIJD']
 
-    df_features_train, df_features_test, df_output_train, df_output_test = \
-        train_test_split(df_features, df_output, test_size=0.2)
+    df_train, df_test = train_test_split(df_input, test_size=0.2)
+    df_train_output = df_train[['WACHTTIJD']]
+    df_train_inputs = df_train.drop(['WACHTTIJD','NAAM_INSTELLING'], axis=1)
 
-    model = ExplainableBoostingRegressor(feature_names=df_features.columns)
-    model.fit(df_features_train.to_numpy(), df_output_train.to_numpy())
+    df_test_output = df_test[['WACHTTIJD']]
+    df_test_inputs = df_test.drop(['WACHTTIJD','NAAM_INSTELLING'], axis=1)
 
-    score = model.score(df_features_test.to_numpy(), df_output_test.to_numpy())
+    model = ExplainableBoostingRegressor(feature_names=df_train_inputs.columns)
+    
+    model.fit(df_train_inputs.to_numpy(), df_train_output.to_numpy())
+    score = model.score(df_test_inputs.to_numpy(), df_test_output.to_numpy())
 
     mlflow.log_metric('R2', score)
 
-    mlflow.sklearn.save_model(model, args.model_file)
+    mlflow.sklearn.log_model(model, artifact_path='wachttijden-ebm')
+
+    mlflow.register_model(f'runs:/{mlflow.active_run().info.run_id}/wachttijden-ebm', "wachttijden")
 
     mlflow.end_run()
 

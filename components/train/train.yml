@@ -7,10 +7,7 @@ type: command
 inputs:
   training_data:
     type: uri_file
-outputs:
-  model:
-    type: mlflow_model
 code: .
-environment: azureml:infosupport-mlops-ebm:6
+environment: azureml:infosupport-mlops-ebm:8
 command: >-
-  python component.py --training-data ${{inputs.training_data}} --model-file ${{outputs.model}}
+  python component.py --training-data ${{inputs.training_data}}
