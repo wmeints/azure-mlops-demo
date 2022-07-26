@@ -1,0 +1,13 @@
+POST https://wachttijden.westeurope.inference.ml.azure.com/score
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer o1hIWZZdRp4TbjNF42x9kTBjKnstOhrk
+
+{
+    "data": {
+        "TYPE_WACHTTIJD": "Behandeling",
+        "SPECIALISME": "KNO (302)",
+        "ROAZ_REGIO": "Noord-NL",
+        "TYPE_ZORGINSTELLING": "Ziekenhuis"
+    }
+}
