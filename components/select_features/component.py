@@ -1,6 +1,5 @@
 import argparse
 import pandas as pd
-import mlflow
 
 
 def select_features(input_file, output_file, features):
@@ -32,14 +31,7 @@ def main():
                         help="List of features to select")
 
     args = parser.parse_args()
-
-    mlflow.start_run()
-
-    mlflow.log_param('features', args.features)
-
     select_features(args.input_file, args.output_file, args.features)
-
-    mlflow.end_run()
 
 
 if __name__ == "__main__":

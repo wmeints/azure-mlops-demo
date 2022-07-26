@@ -8,6 +8,6 @@ inputs:
   training_data:
     type: uri_file
 code: .
-environment: azureml:infosupport-mlops-ebm:8
+environment: azureml:AzureML-sklearn-1.0-ubuntu20.04-py38-cpu:26
 command: >-
   python component.py --training-data ${{inputs.training_data}}

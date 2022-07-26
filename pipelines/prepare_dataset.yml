@@ -12,19 +12,20 @@ outputs:
 jobs:
   select_features:
     type: command
-    component: azureml:select_features@latest
+    component: file:../components/select_features/select-features.yml
     inputs:
       input_file: 
         path: azureml:wachttijden_raw@latest
-      features: TYPE_WACHTTIJD WACHTTIJD OMS_WACHTTIJD SPECIALISME ROAZ_REGIO NAAM_INSTELLING TYPE_ZORGINSTELLING
+      features: WACHTTIJD TYPE_WACHTTIJD SPECIALISME ROAZ_REGIO TYPE_ZORGINSTELLING
     outputs:
       output_file:
         type: uri_file
         mode: rw_mount
   fix_missing_values:
     type: command
-    component: azureml:fix_missing_values@latest
+    component: file:../components/fix_missing_values/fix-missing-values.yml
     inputs:
       input_file: ${{parent.jobs.select_features.outputs.output_file}}
     outputs:
       output_file: ${{parent.outputs.prepared_dataset}}
+  
