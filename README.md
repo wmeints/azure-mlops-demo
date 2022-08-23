@@ -87,7 +87,9 @@ This will run [the data preparation pipeline](./pipelines/prepare_dataset.yml) t
 
 ```mermaid
 graph TD;
-    "Select features" --> "Fix null values"
+    Select[Select features]
+    Fix[Fix missing values]
+    Select --> Fix
 ```
 
 | Step            | Description                                         |                                                       |
@@ -110,7 +112,11 @@ This runs [the model training pipeline](./pipelines/train_model.yml) which looks
 
 ```mermaid
 graph TD;
-    "Binarize features" --> "Train model" --> "Score model" --> "Register model"
+    Binarize[Binarize features]
+    Train[Train model]
+    Evaluate[Evaluate model]
+    Register[Register model]
+    Binarize --> Train --> Evaluate --> Register
 ```
 
 Note, that this pipeline contains a single component [Train model](./components/train/component.py).
