@@ -13,7 +13,7 @@ You'll need the following software:
 - Powershell 7.2
 - Visual Studio Code
 
-In addition, you'll need an Azure subscription with a ML workspace.
+In addition, you'll need an Azure subscription with an ML workspace.
 This repository doesn't contain the code to set it up. You can use the portal
 or Azure Bicep to configure the workspace yourself.
 
