@@ -1,7 +1,7 @@
 $schema: https://azuremlschemas.azureedge.net/latest/managedOnlineDeployment.schema.json
-name: main-v6
+name: alternate-v1
 endpoint_name: wachttijden
-model: azureml:wachttijden:7
+model: azureml:wachttijden:8
 code_configuration:
   code: ../components/score
   scoring_script: score.py

@@ -4,7 +4,7 @@ from mlflow.models.signature import infer_signature
 import pandas as pd
 import argparse
 from sklearn.model_selection import train_test_split
-from sklearn.ensemble import RandomForestRegressor
+from sklearn.linear_model import Ridge
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.pipeline import FeatureUnion, Pipeline
 
@@ -36,16 +36,16 @@ def main():
         'TYPE_ZORGINSTELLING'
     ]
 
-    num_estimators = 100
+    alpha = .5
 
     mlflow.log_param('features', feature_names)
-    mlflow.log_param('num_estimators', num_estimators)
+    mlflow.log_param('alpha', alpha)
 
     encoders = [(feature_name, OneHotEncoder()) for feature_name in feature_names]
 
     model = Pipeline([
         ("combine_features",FeatureUnion(encoders)),
-        ("estimator",RandomForestRegressor(n_estimators=num_estimators))
+        ("estimator",Ridge(alpha=alpha))
     ])
 
     model.fit(df_train_inputs.to_numpy(), df_train_output.values.reshape(-1,1))
