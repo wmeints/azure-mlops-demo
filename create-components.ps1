@@ -1,8 +1,11 @@
-$ResourceGroup = "rg-experiments-app-infra"
-$WorkspaceName = "5kgyltzmf3tny"
+$ResourceGroup = $env:AZURE_ML_RESOURCE_GROUP
+$WorkspaceName = $env:AZURE_ML_WORKSPACE
 
-$Components = get-childitem components/*/*.yml
+$components = @(
+    "./components/fix_missing_values"
+    "./components/select_features"
+)
 
-foreach($Component in $Components) {
-    az ml component create -f $Component.FullName -w $WorkspaceName -g $ResourceGroup
+foreach($component in $components) {
+    az ml component create -f $component -w $WorkspaceName -g $ResourceGroup
 }

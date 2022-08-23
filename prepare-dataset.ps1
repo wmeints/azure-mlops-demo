@@ -1,5 +1,5 @@
-$ResourceGroup = "rg-experiments-app-infra"
-$WorkspaceName = "5kgyltzmf3tny"
+$ResourceGroup = $env:AZURE_ML_RESOURCE_GROUP
+$WorkspaceName = $env:AZURE_ML_WORKSPACE
 
 $Year = Get-Date -Format "yyyy"
 $Month = Get-Date -Format "MM"

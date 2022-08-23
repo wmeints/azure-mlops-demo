@@ -1,7 +1,7 @@
 POST https://wachttijden.westeurope.inference.ml.azure.com/score
 Content-Type: application/json
 Accept: application/json
-Authorization: Bearer o1hIWZZdRp4TbjNF42x9kTBjKnstOhrk
+Authorization: Bearer <your-token>
 
 {
     "data": {
