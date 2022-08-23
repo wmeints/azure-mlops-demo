@@ -10,7 +10,7 @@ topics.
 You'll need the following software:
 
 - Python 3.9
-- Docker
+- Powershell 7.2
 - Visual Studio Code
 
 In addition, you'll need an Azure subscription with a ML workspace.
